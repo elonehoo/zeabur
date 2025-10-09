@@ -1,0 +1,50 @@
+{
+  "name": "starter-ts",
+  "type": "module",
+  "version": "0.0.3",
+  "description": "Starter template for TypeScript",
+  "author": "Elone Hoo <hi@elonehoo.me>",
+  "license": "MIT",
+  "homepage": "https://github.com/elonehoo-starter/typescript",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elonehoo-starter/typescript"
+  },
+  "bugs": "https://github.com/elonehoo-starter/typescript/issues",
+  "keywords": [
+    "template",
+    "TypeScript"
+  ],
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "*.d.ts",
+    "dist"
+  ],
+  "scripts": {
+    "dev": "tsdown --watch",
+    "build": "tsdown",
+    "stale": "stale-del -u",
+    "test": "vitest",
+    "ui": "vitest --ui",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "tsc --noEmit",
+    "release": "bumpp package.json --commit --push --tag && pnpm -r publish --access public"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "catalog:lint",
+    "@types/node": "catalog:types",
+    "@vitest/ui": "catalog:test",
+    "bumpp": "catalog:build",
+    "eslint": "catalog:lint",
+    "statl-del": "catalog:utils",
+    "tsdown": "catalog:build",
+    "typescript": "catalog:types",
+    "vitest": "catalog:test"
+  }
+}
