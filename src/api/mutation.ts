@@ -44,6 +44,7 @@ export interface AddDomainArgs {
 export interface CheckDomainAvailableArgs {
   domain: string
   isGenerated: boolean
+  region: string
 }
 export interface CreateEnvironmentVariableArgs {
   serviceID: string
@@ -280,11 +281,30 @@ export function executeMutation<T = any>(
 
 // 典型对象返回 --------------------------------
 /** 触发创建备份（返回是否成功） | Explorer: https://studio.apollographql.com/public/zeabur/variant/main/explorer （mutation: createBackup） */
-export function mutateCreateBackup(c: ZeaburClient, args: CreateBackupArgs): Promise<boolean> {
+export function mutateCreateBackup(c: ZeaburClient, args: {
+  environmentID: string
+  serviceID: string
+}): Promise<boolean> {
   return executeMutation(c, 'createBackup', args)
 }
-/** 添加域名 | Explorer: https://studio.apollographql.com/public/zeabur/variant/main/explorer （mutation: addDomain） */
-export function mutateAddDomain(c: ZeaburClient, args: AddDomainArgs, sel: Selection = '_id domain status createdAt'): Promise<Domain> {
+
+/**
+ * add domain to a service
+ * @param args mutation arguments
+ * @param args.domain If isGenerated is set to true, please provide the prefix for the domain name. For example, if you want "mydomain.zeabur.com", then the prefix would be "mydomain".
+ * @param args.isGenerated If you want to add a domain with Zeabur's root domain, for example: "mydomain.zeabur.com", you need to set this to true.
+ * @param args.redirectTo If redirectTo is set, the domain will redirect to the provided domain. Notice that the target domain must be a domain that is already added to the service.
+ * @param args.portName If portName is set, the domain will point to the service's port with the provided name. This field is only valid when service.spec not null and length of service.spec.ports more than 1.
+ * @returns
+ */
+export function nativeAddDomain(c: ZeaburClient, args: {
+  serviceID: string
+  domain: string
+  isGenerated: boolean
+  environmentID?: string
+  redirectTo?: string
+  portName?: string
+}, sel: Selection = '_id domain status createdAt'): Promise<Domain> {
   return executeMutation(c, 'addDomain', args, sel)
 }
 /** 检查域名可用性 | Explorer: https://studio.apollographql.com/public/zeabur/variant/main/explorer （mutation: checkDomainAvailable） */

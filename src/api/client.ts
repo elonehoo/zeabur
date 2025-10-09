@@ -4,7 +4,7 @@
  */
 export interface ZeaburClientOptions {
   /** GraphQL 端点 */
-  endpoint: string
+  endpoint?: string
   /** 认证 Token，可选（会放入 Authorization: Bearer <token>） */
   token?: string
   /** 可自定义 fetch 实现（例如跨平台、SSR 等场景） */
@@ -22,7 +22,7 @@ export class ZeaburClient {
   private fetchImpl: typeof fetch
 
   constructor(options: ZeaburClientOptions) {
-    this.endpoint = options.endpoint
+    this.endpoint = options.endpoint || 'https://api.zeabur.com/graphql'
     this.token = options.token
     this.fetchImpl = options.fetchImpl || fetch
   }

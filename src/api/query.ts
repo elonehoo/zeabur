@@ -439,6 +439,32 @@ export function queryRegions(c: ZeaburClient, _args?: void, sel: Selection = 'id
   return c.executeInline('query', 'regions', undefined, sel)
 }
 
+export function queryGetBasicInformationOfProject(
+  c: ZeaburClient,
+  args: { projectID: string },
+  sel: Selection = `_id
+name
+iconURL
+createdAt
+region {
+  providerInfo { code icon name __typename }
+  name
+  id
+  available
+  __typename
+}
+services { name __typename }
+owner { _id avatarURL name username email __typename }
+collaborators { _id avatarURL name username email __typename }
+__typename`,
+): Promise<Project> {
+  // 使用具名操作 + 变量，保持与期望的 GraphQL 请求格式一致
+  const selection = (sel ?? '').trim()
+  const selectionBlock = selection.length ? `\n    ${selection.split(/\r?\n/).join('\n    ')}` : ''
+  const document = `query GetBasicInformationOfProject($projectID: ObjectID!) {\n  project(_id: $projectID) {${selectionBlock}\n  }\n}`
+  return c.request<{ project: Project }>(document, { projectID: args.projectID }).then(r => r.project)
+}
+
 // ---- 克隆项目状态 ----
 /** 查询项目克隆状态 | Explorer: https://studio.apollographql.com/public/zeabur/variant/main/explorer （operation: cloneProjectStatus） */
 export function queryCloneProjectStatus(c: ZeaburClient, args: CloneProjectStatusArgs, sel: Selection = 'newProjectId error events { type message createdAt }'): Promise<CloneProjectStatusResult> {
