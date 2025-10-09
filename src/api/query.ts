@@ -221,7 +221,7 @@ export interface CloneProjectStatusArgs {
 // Helper service wrapper args
 export interface ServiceWrapperArgs {
   serviceArgs: ServiceArgs
- }
+}
 
 // ---- 基础 / 通用 ----
 /**
