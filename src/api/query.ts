@@ -475,7 +475,10 @@ export function queryCloneProjectStatus(c: ZeaburClient, args: CloneProjectStatu
 /**
  * 通过查询 Service 再提取其 domains 列表的便捷方法。
  * Explorer: https://studio.apollographql.com/public/zeabur/variant/main/explorer （operation: service -> domains）
+ * @param c Zeabur client
+ * @param args wrapper arguments
  * @param args.serviceArgs ServiceArgs 与 `queryService` 相同
+ * @param sel selection set
  */
 export function queryDomainsViaService(c: ZeaburClient, args: ServiceWrapperArgs, sel: Selection = 'domains { _id domain status createdAt }'): Promise<Domain[]> {
   return c.executeInline('query', 'service', args?.serviceArgs, `_id\n${sel}`)
@@ -486,7 +489,10 @@ export function queryDomainsViaService(c: ZeaburClient, args: ServiceWrapperArgs
 /**
  * 通过查询 Service 再提取其环境变量列表的便捷方法。
  * Explorer: https://studio.apollographql.com/public/zeabur/variant/main/explorer （operation: service -> variables）
+ * @param c Zeabur client
+ * @param args wrapper arguments
  * @param args.serviceArgs ServiceArgs 与 `queryService` 相同
+ * @param sel selection set
  */
 export function queryVariablesViaService(c: ZeaburClient, args: ServiceWrapperArgs, sel: Selection = 'variables { _id key value createdAt }'): Promise<EnvironmentVariable[]> {
   return c.executeInline('query', 'service', args?.serviceArgs, `_id\n${sel}`)

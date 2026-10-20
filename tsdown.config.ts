@@ -8,4 +8,6 @@ export default defineConfig({
   ],
   clean: true,
   dts: true,
+  // tsdown 0.23 emits .mjs when this is on; package exports point at .js.
+  fixedExtension: false,
 })

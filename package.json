@@ -2,6 +2,7 @@
   "name": "@elonehoo/zeabur",
   "type": "module",
   "version": "0.0.3",
+  "packageManager": "pnpm@10.34.7",
   "description": "A Zeabur API client for TypeScript with Elone Hoo.",
   "author": "Elone Hoo <hi@elonehoo.me>",
   "license": "MIT",
@@ -52,12 +53,14 @@
   "devDependencies": {
     "@antfu/eslint-config": "catalog:lint",
     "@types/node": "catalog:types",
+    "@vitest/coverage-v8": "catalog:test",
     "@vitest/ui": "catalog:test",
     "bumpp": "catalog:build",
     "eslint": "catalog:lint",
     "statl-del": "catalog:utils",
     "tsdown": "catalog:build",
     "typescript": "catalog:types",
+    "vite": "catalog:test",
     "vitest": "catalog:test"
   }
 }

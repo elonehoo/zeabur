@@ -290,12 +290,16 @@ export function mutateCreateBackup(c: ZeaburClient, args: {
 
 /**
  * add domain to a service
+ * @param c Zeabur client
  * @param args mutation arguments
+ * @param args.serviceID service that receives the domain
  * @param args.domain If isGenerated is set to true, please provide the prefix for the domain name. For example, if you want "mydomain.zeabur.com", then the prefix would be "mydomain".
+ * @param args.environmentID environment that receives the domain
  * @param args.isGenerated If you want to add a domain with Zeabur's root domain, for example: "mydomain.zeabur.com", you need to set this to true.
  * @param args.redirectTo If redirectTo is set, the domain will redirect to the provided domain. Notice that the target domain must be a domain that is already added to the service.
  * @param args.portName If portName is set, the domain will point to the service's port with the provided name. This field is only valid when service.spec not null and length of service.spec.ports more than 1.
- * @returns
+ * @param sel selection set
+ * @returns the created domain
  */
 export function nativeAddDomain(c: ZeaburClient, args: {
   serviceID: string
