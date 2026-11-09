@@ -18,7 +18,7 @@ catalogs:
     vite: ^8.3.6
     vitest: ^5.1.0
   types:
-    '@types/node': ^24.19.2
+    '@types/node': ^26.6.6
     typescript: ^5.9.3
   utils:
     statl-del: ^0.0.4
