@@ -13,10 +13,10 @@ catalogs:
     '@antfu/eslint-config': ^9.5.1
     eslint: ^10.15.0
   test:
-    '@vitest/coverage-v8': ^5.1.0
-    '@vitest/ui': ^5.1.0
+    '@vitest/coverage-v8': ^5.1.1
+    '@vitest/ui': ^5.1.1
     vite: ^8.3.8
-    vitest: ^5.1.0
+    vitest: ^5.1.1
   types:
     '@types/node': ^26.6.6
     typescript: ^5.9.3
